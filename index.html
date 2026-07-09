@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civil Engineering Calculator - Complete Toolkit for Site Engineers</title>
+    <meta name="description" content="Perform bearing conversions, traverse, contour plots, chain tape corrections, beam analysis, and quantity estimations directly on site with Civil Engineering Calculator.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Grid/Glow background effects -->
+    <div class="glow-bg"></div>
+    <div class="blueprint-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">C</div>
+                <span>CivilCalc</span>
+            </a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#playground">Live Demo</a>
+                <a href="#reports">PDF Reports</a>
+                <a href="privacy.html" class="nav-btn-secondary">Privacy</a>
+                <a href="#download" class="nav-btn">Download Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="badge">🚀 Engineered for Site Professionals</div>
+                <h1>The Ultimate Mobile Toolkit for <span>Civil Engineers</span> & Surveyors</h1>
+                <p>Perform precise beam analysis, concrete quantity estimations, chain correction, and real-time contour plotting directly on-site with your mobile device.</p>
+                <div class="hero-ctas">
+                    <a href="#download" class="cta-primary">
+                        <svg class="play-store-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M5 3.25c-.27 0-.52.11-.7.31L12.5 11.75l8.2-8.2c-.18-.2-.43-.3-.7-.3H5zm-1.44 1.34c-.19.18-.31.44-.31.71v13.4c0 .27.12.53.31.71L11.08 12 3.56 4.59zM12.5 12.25l-7.7 7.7c.18.2.43.31.7.31h14.5c.27 0 .52-.11.7-.31l-8.2-8.2L12.5 12.25zm8.94-7.66L13.92 12l7.52 7.52c.19-.18.31-.44.31-.71V5.3c0-.27-.12-.53-.31-.71z"/>
+                        </svg>
+                        <span>Get it on Google Play</span>
+                    </a>
+                    <a href="#playground" class="cta-secondary">Try Live Demo</a>
+                </div>
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <strong>48+</strong>
+                        <span>Calculators</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong>100%</strong>
+                        <span>Offline Capable</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong>PDF</strong>
+                        <span>Instant Reports</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="device-mockup">
+                    <div class="device-screen">
+                        <div class="app-header">
+                            <span class="app-title">Civil Engineering Calculator</span>
+                            <div class="status-indicator">● Active</div>
+                        </div>
+                        <div class="mockup-tab-title">Contour Plot Generator</div>
+                        <div class="canvas-container">
+                            <canvas id="hero-contour-canvas" width="300" height="240"></canvas>
+                            <div class="canvas-legend">
+                                <div class="legend-title">Elevation (m)</div>
+                                <div class="legend-scale">
+                                    <div class="scale-bar"></div>
+                                    <div class="scale-labels">
+                                        <span>150m (High)</span>
+                                        <span>90m (Low)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mockup-controls">
+                            <button id="regenerate-contour-btn" class="mockup-btn">Regenerate Grid</button>
+                            <div class="coordinate-readout">X: <span id="mock-x">12.4</span>, Y: <span id="mock-y">8.9</span>, Z: <span id="mock-z">112m</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Key Pillars (Feature Grid) -->
+    <section id="features" class="features-section">
+        <div class="section-header">
+            <h2>Designed by Engineers, Built for the Field</h2>
+            <p>Every tool is optimized for quick, robust, and mathematically sound calculations on-site.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🧭</div>
+                <h3>Advanced Surveying</h3>
+                <p>Run precise bearing conversions (azimuth to quadrant & quadrant to azimuth), traverses, and Simpson's offsets with detailed segment breakdowns.</p>
+                <ul class="feature-bullets">
+                    <li>Segment-by-segment subdivisions</li>
+                    <li>Quadrant-corrected bearing formulas</li>
+                    <li>Simpson's 1/3 and 3/8 offset analysis</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Contour Plot Map</h3>
+                <p>Directly input coordinates or import large CSV files to generate visual elevation maps utilizing Marching Squares contouring.</p>
+                <ul class="feature-bullets">
+                    <li>Inverse Distance Weighting (IDW) interpolation</li>
+                    <li>Gradient-colored isoline rendering</li>
+                    <li>Pinch-to-zoom controls & image exports</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📏</div>
+                <h3>Tape & Chain Corrections</h3>
+                <p>Ensure distance accuracy on any terrain. Apply standardized corrections for site-specific conditions dynamically.</p>
+                <ul class="feature-bullets">
+                    <li>Tension, Temperature, & Sag corrections</li>
+                    <li>Metric & Imperial live units toggling</li>
+                    <li>Instant exportable calculation sheets</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏗️</div>
+                <h3>Structural & Quantity Estimating</h3>
+                <p>Calculate brick counts, concrete volumes, column limits, and beam shear force/bending moment diagrams instantly.</p>
+                <ul class="feature-bullets">
+                    <li>Slab, Column, & Footing estimators</li>
+                    <li>Asphalt and Retaining wall support</li>
+                    <li>Beam deflection and BMD/SFD visualization</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Trial Playground -->
+    <section id="playground" class="playground-section">
+        <div class="section-header">
+            <h2>Try It Out Right Now</h2>
+            <p>Experience a preview of our premium calculator engines running directly in your web browser.</p>
+        </div>
+        <div class="playground-container">
+            <!-- Tabs Header -->
+            <div class="playground-tabs">
+                <button class="tab-trigger active" onclick="switchPlaygroundTab('bearing')">Bearing Converter</button>
+                <button class="tab-trigger" onclick="switchPlaygroundTab('estimator')">Concrete & Brick Estimator</button>
+                <button class="tab-trigger" onclick="switchPlaygroundTab('correction')">Chain/Tape Sag Correction</button>
+            </div>
+            
+            <!-- Tab Content: Bearing -->
+            <div id="tab-bearing" class="tab-content active">
+                <div class="playground-split">
+                    <div class="playground-inputs">
+                        <h3>Compass Bearing Tool</h3>
+                        <p>Input a decimal degree azimuth (0° to 360°) to convert it instantly into quadrant bearings (e.g. S 50.00° E).</p>
+                        <div class="input-group">
+                            <label for="azimuth-input">Azimuth Degree (°)</label>
+                            <input type="number" id="azimuth-input" min="0" max="360" step="0.01" value="130" placeholder="e.g. 130">
+                        </div>
+                        <button onclick="calculateWebBearing()" class="calc-btn">Convert Bearing</button>
+                    </div>
+                    <div class="playground-results">
+                        <div class="result-box">
+                            <span class="result-label">Resultant Quadrant Bearing</span>
+                            <div id="bearing-result" class="result-value">S 50.00° E</div>
+                        </div>
+                        <div class="compass-diagram">
+                            <div class="compass-ring">
+                                <span class="compass-dir n">N</span>
+                                <span class="compass-dir e">E</span>
+                                <span class="compass-dir s">S</span>
+                                <span class="compass-dir w">W</span>
+                                <div id="compass-needle" class="needle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Estimator -->
+            <div id="tab-estimator" class="tab-content">
+                <div class="playground-split">
+                    <div class="playground-inputs">
+                        <h3>Concrete Volume Calculator</h3>
+                        <p>Compute the volume of wet concrete required and estimated cement/sand bags for a rectangular slab.</p>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="slab-length">Length (m)</label>
+                                <input type="number" id="slab-length" value="10" step="0.1">
+                            </div>
+                            <div class="input-group">
+                                <label for="slab-width">Width (m)</label>
+                                <input type="number" id="slab-width" value="5" step="0.1">
+                            </div>
+                            <div class="input-group">
+                                <label for="slab-thickness">Thickness (m)</label>
+                                <input type="number" id="slab-thickness" value="0.15" step="0.01">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="mix-ratio">Concrete Mix Ratio</label>
+                            <select id="mix-ratio">
+                                <option value="1:1.5:3">M20 (1 : 1.5 : 3) - Standard Slab</option>
+                                <option value="1:2:4">M15 (1 : 2 : 4) - General Foundation</option>
+                                <option value="1:1:2">M25 (1 : 1 : 2) - Heavy Load Columns</option>
+                            </select>
+                        </div>
+                        <button onclick="calculateWebConcrete()" class="calc-btn">Estimate Quantities</button>
+                    </div>
+                    <div class="playground-results">
+                        <div class="result-grid">
+                            <div class="result-card">
+                                <span class="card-title">Wet Concrete Vol</span>
+                                <div id="concrete-vol" class="card-val">7.50 m³</div>
+                            </div>
+                            <div class="result-card">
+                                <span class="card-title">Cement Needed</span>
+                                <div id="cement-bags" class="card-val">62.3 Bags</div>
+                            </div>
+                            <div class="result-card">
+                                <span class="card-title">Sand Quantity</span>
+                                <div id="sand-quantity" class="card-val">6.60 Ton</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Correction -->
+            <div id="tab-correction" class="tab-content">
+                <div class="playground-split">
+                    <div class="playground-inputs">
+                        <h3>Tape Sag Correction</h3>
+                        <p>Calculate the sag correction factor when a tape/chain is suspended between supports on the field.</p>
+                        <div class="input-group">
+                            <label for="sag-weight">Total Weight of Tape (kg)</label>
+                            <input type="number" id="sag-weight" value="0.75" step="0.05">
+                        </div>
+                        <div class="input-group">
+                            <label for="sag-pull">Pull/Tension Applied (kg)</label>
+                            <input type="number" id="sag-pull" value="10" step="0.5">
+                        </div>
+                        <div class="input-group">
+                            <label for="sag-length">Unsupported Span (m)</label>
+                            <input type="number" id="sag-length" value="30" step="1">
+                        </div>
+                        <button onclick="calculateWebSag()" class="calc-btn">Compute Sag Correction</button>
+                    </div>
+                    <div class="playground-results">
+                        <div class="result-box">
+                            <span class="result-label">Sag Correction (C<sub>s</sub>)</span>
+                            <div id="sag-result" class="result-value">-0.042 m</div>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem;">This negative value must be subtracted from the measured length to correct for sag distortion.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PDF & Share Showcase Section -->
+    <section id="reports" class="reports-section">
+        <div class="reports-container">
+            <div class="reports-visual">
+                <div class="pdf-card">
+                    <div class="pdf-header">
+                        <div class="pdf-title-block">
+                            <div class="pdf-tag">REPORT</div>
+                            <h4>Civil Engineering Calculator</h4>
+                        </div>
+                        <span class="pdf-date">2026-07-09</span>
+                    </div>
+                    <div class="pdf-body">
+                        <h5>CHAIN/TAPE CORRECTION REPORT</h5>
+                        <div class="pdf-data-table">
+                            <div class="pdf-row"><span>Nominal Length:</span><strong>30.000 m</strong></div>
+                            <div class="pdf-row"><span>Temperature Correction:</span><strong>+0.0034 m</strong></div>
+                            <div class="pdf-row"><span>Tension Pull Correction:</span><strong>+0.0012 m</strong></div>
+                            <div class="pdf-row"><span>Sag Correction:</span><strong>-0.0421 m</strong></div>
+                            <div class="pdf-divider"></div>
+                            <div class="pdf-row total"><span>Corrected Distance:</span><strong>29.9625 m</strong></div>
+                        </div>
+                        <div class="pdf-signature">Checked via CivilCalc Engine</div>
+                    </div>
+                </div>
+            </div>
+            <div class="reports-content">
+                <div class="badge">📄 Industry Standard Exports</div>
+                <h2>Generate & Share Dynamic Reports</h2>
+                <p>Never rely on scratchpad scribbles. Instantly export detailed PDF computation logs directly to your device storage or send them to site coordinators, inspectors, or clients via standard system sharing.</p>
+                <div class="pdf-feature-list">
+                    <div class="pdf-feat-item">
+                        <strong>✓ Professional Headers</strong>
+                        <span>Every document carries the "Civil Engineering Calculator" uniform header.</span>
+                    </div>
+                    <div class="pdf-feat-item">
+                        <strong>✓ Step-by-Step Segments</strong>
+                        <span>Breakdown offset values, curve sub-arcs, and correction calculations line-by-line.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download CTA (Footer Call) -->
+    <section id="download" class="download-section">
+        <div class="download-container">
+            <h2>Ready to Transform Your On-Site Calculations?</h2>
+            <p>Get the most powerful suite of civil calculation engines in the palm of your hand, running 100% offline.</p>
+            <div class="download-actions">
+                <a href="#" class="download-btn-badge">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo">
+                    <div class="logo-icon">C</div>
+                    <span>Civil Engineering Calculator</span>
+                </div>
+                <p>Professional offline calculation utilities for civil engineers, site managers, structural designers, and land surveyors.</p>
+            </div>
+            <div class="footer-links-group">
+                <h4>Legal & Support</h4>
+                <ul>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="mailto:support@civilcalcapp.example.com">Support Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Civil Engineering Calculator. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
