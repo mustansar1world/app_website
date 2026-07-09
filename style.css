@@ -85,20 +85,15 @@ body {
     color: var(--text-light);
     font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 1.35rem;
+    font-size: 1.2rem;
     text-decoration: none;
 }
 
-.logo-icon {
+.logo-img {
     width: 32px;
     height: 32px;
-    background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+    object-fit: contain;
     border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 800;
 }
 
 .nav-links {
