@@ -1,6 +1,6 @@
 // Dynamic Canvas Contouring Simulator for Hero Mockup
 const canvas = document.getElementById('hero-contour-canvas');
-const ctx = canvas.getContext('2d');
+const ctx = canvas ? canvas.getContext('2d') : null;
 const regenBtn = document.getElementById('regenerate-contour-btn');
 
 const mockX = document.getElementById('mock-x');
@@ -104,30 +104,35 @@ function drawContourGrid() {
 }
 
 // Interactive coordinates updates
-canvas.addEventListener('mousemove', (e) => {
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    const cellW = rect.width / (gridCols - 1);
-    const cellH = rect.height / (gridRows - 1);
-    
-    const colIdx = Math.max(0, Math.min(gridCols - 1, Math.round(x / cellW)));
-    const rowIdx = Math.max(0, Math.min(gridRows - 1, Math.round(y / cellH)));
-    
-    if (points[rowIdx] && points[rowIdx][colIdx]) {
-        const height = points[rowIdx][colIdx];
-        mockX.textContent = (x * 0.2).toFixed(1);
-        mockY.textContent = ((rect.height - y) * 0.2).toFixed(1);
-        mockZ.textContent = height.toFixed(1) + "m";
-    }
-});
+// Interactive coordinates updates
+if (canvas) {
+    canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const cellW = rect.width / (gridCols - 1);
+        const cellH = rect.height / (gridRows - 1);
+        
+        const colIdx = Math.max(0, Math.min(gridCols - 1, Math.round(x / cellW)));
+        const rowIdx = Math.max(0, Math.min(gridRows - 1, Math.round(y / cellH)));
+        
+        if (points[rowIdx] && points[rowIdx][colIdx]) {
+            const height = points[rowIdx][colIdx];
+            mockX.textContent = (x * 0.2).toFixed(1);
+            mockY.textContent = ((rect.height - y) * 0.2).toFixed(1);
+            mockZ.textContent = height.toFixed(1) + "m";
+        }
+    });
+}
 
 // Regenerate Trigger
-regenBtn.addEventListener('click', () => {
-    initRandomPoints();
-    drawContourGrid();
-});
+if (regenBtn) {
+    regenBtn.addEventListener('click', () => {
+        initRandomPoints();
+        drawContourGrid();
+    });
+}
 
 // Tab Switch Logic
 function switchPlaygroundTab(tabId) {
@@ -228,7 +233,32 @@ function calculateWebSag() {
     document.getElementById('sag-result').innerHTML = correction.toFixed(4) + " m";
 }
 
-// Run canvas setup immediately
-initRandomPoints();
-drawContourGrid();
+// Run canvas setup immediately if canvas is present
+if (canvas) {
+    initRandomPoints();
+    drawContourGrid();
+}
 calculateWebBearing();
+
+// Gallery Tab Switch Logic
+function switchGalleryTab(tabId) {
+    // Deactivate all gallery tab buttons
+    document.querySelectorAll('.gallery-tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Deactivate all gallery content blocks
+    document.querySelectorAll('.gallery-tab-content').forEach(block => {
+        block.classList.remove('active');
+    });
+    
+    // Find clicked tab button and activate it
+    const activeBtn = Array.from(document.querySelectorAll('.gallery-tab-btn')).find(btn => {
+        return btn.getAttribute('onclick').includes(tabId);
+    });
+    if (activeBtn) activeBtn.classList.add('active');
+    
+    // Activate target content block
+    const activeBlock = document.getElementById(`gallery-${tabId}`);
+    if (activeBlock) activeBlock.classList.add('active');
+}

@@ -64,31 +64,8 @@
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="device-mockup">
-                    <div class="device-screen">
-                        <div class="app-header">
-                            <span class="app-title">Civil Engineering Calculator</span>
-                            <div class="status-indicator">● Active</div>
-                        </div>
-                        <div class="mockup-tab-title">Contour Plot Generator</div>
-                        <div class="canvas-container">
-                            <canvas id="hero-contour-canvas" width="300" height="240"></canvas>
-                            <div class="canvas-legend">
-                                <div class="legend-title">Elevation (m)</div>
-                                <div class="legend-scale">
-                                    <div class="scale-bar"></div>
-                                    <div class="scale-labels">
-                                        <span>150m (High)</span>
-                                        <span>90m (Low)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mockup-controls">
-                            <button id="regenerate-contour-btn" class="mockup-btn">Regenerate Grid</button>
-                            <div class="coordinate-readout">X: <span id="mock-x">12.4</span>, Y: <span id="mock-y">8.9</span>, Z: <span id="mock-z">112m</span></div>
-                        </div>
-                    </div>
+                <div class="hero-poster-container">
+                    <img src="cover_image.png" alt="Civil Engineering Calculator Poster" class="hero-poster-img">
                 </div>
             </div>
         </div>
@@ -148,40 +125,79 @@
     <section class="gallery-section">
         <div class="section-header">
             <h2>Real-Time App Showcase</h2>
-            <p>Take a look at the actual interfaces, visual contour map configurations, structural analyses, and estimating screens.</p>
+            <p>Explore the features of the app through actual interfaces and calculation screens.</p>
         </div>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="survey_tools.png" alt="Surveying Suite Menu">
-                <div class="gallery-caption">Surveying Suite Menu</div>
+        
+        <!-- Gallery Tabs -->
+        <div class="gallery-tabs">
+            <button class="gallery-tab-btn active" onclick="switchGalleryTab('surveying')">Surveying Suite</button>
+            <button class="gallery-tab-btn" onclick="switchGalleryTab('structural')">Structural Analysis</button>
+            <button class="gallery-tab-btn" onclick="switchGalleryTab('estimations')">Estimations & Quantities</button>
+            <button class="gallery-tab-btn" onclick="switchGalleryTab('general')">General Utilities</button>
+        </div>
+
+        <!-- Tab contents -->
+        <div id="gallery-surveying" class="gallery-tab-content active">
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="survey_tools.png" alt="Surveying Suite Menu">
+                    <div class="gallery-caption">Surveying Suite Menu</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="contour_plots.png" alt="IDW Contour Isolines">
+                    <div class="gallery-caption">Dynamic IDW Contour Plots</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="rise_and_fall.png" alt="Rise & Fall Levelling Calculations">
+                    <div class="gallery-caption">Rise & Fall Level Book</div>
+                </div>
             </div>
-            <div class="gallery-item">
-                <img src="contour_plots.png" alt="IDW Contour Isolines">
-                <div class="gallery-caption">Dynamic IDW Contour Plots</div>
+        </div>
+
+        <div id="gallery-structural" class="gallery-tab-content">
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="beam_analysis.png" alt="Beam SFD/BMD deflection calculations">
+                    <div class="gallery-caption">Beam Deflection & BMD/SFD</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="truss_analysis.png" alt="Truss Deflection and Force Limits">
+                    <div class="gallery-caption">Truss Deflection Limits</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="metal_section_calculator.png" alt="Metal Section Properties Calculator">
+                    <div class="gallery-caption">Metal Section Properties</div>
+                </div>
             </div>
-            <div class="gallery-item">
-                <img src="beam_analysis.png" alt="Beam SFD/BMD deflection calculations">
-                <div class="gallery-caption">Beam Deflection & BMD/SFD</div>
+        </div>
+
+        <div id="gallery-estimations" class="gallery-tab-content">
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="quantity_estimation.png" alt="Quantity Estimation Menu">
+                    <div class="gallery-caption">Quantity Estimation Menu</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="rcc_estimation.png" alt="RCC concrete reinforcement volume">
+                    <div class="gallery-caption">RCC Reinforcement Estimations</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="volume_calculations.png" alt="Construction Earthwork Volume Calculations">
+                    <div class="gallery-caption">Volume Earthwork calculations</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="area_calculations.png" alt="Structural Area offset calculations">
+                    <div class="gallery-caption">Area Offset Calculations</div>
+                </div>
             </div>
-            <div class="gallery-item">
-                <img src="quantity_estimation.png" alt="Quantity Estimation Menu">
-                <div class="gallery-caption">Quantity Estimation Menu</div>
-            </div>
-            <div class="gallery-item">
-                <img src="rise_and_fall.png" alt="Rise & Fall Levelling Calculations">
-                <div class="gallery-caption">Rise & Fall Level Book</div>
-            </div>
-            <div class="gallery-item">
-                <img src="truss_analysis.png" alt="Truss Deflection and Force Limits">
-                <div class="gallery-caption">Truss Deflection Limits</div>
-            </div>
-            <div class="gallery-item">
-                <img src="metal_section_calculator.png" alt="Metal Section Properties Calculator">
-                <div class="gallery-caption">Metal Section Properties</div>
-            </div>
-            <div class="gallery-item">
-                <img src="unit_converter.png" alt="Engineering Units Conversion">
-                <div class="gallery-caption">Dynamic Unit Selector</div>
+        </div>
+
+        <div id="gallery-general" class="gallery-tab-content">
+            <div class="gallery-grid flex-center">
+                <div class="gallery-item" style="max-width: 380px; margin: 0 auto;">
+                    <img src="unit_converter.png" alt="Engineering Units Conversion">
+                    <div class="gallery-caption">Dynamic Unit Selector</div>
+                </div>
             </div>
         </div>
     </section>
@@ -387,7 +403,7 @@
                 <ul>
                     <li><a href="privacy.html">Privacy Policy</a></li>
                     <li><a href="#">Terms of Service</a></li>
-                    <li><a href="mailto:support@civilcalcapp.example.com">Support Contact</a></li>
+                    <li><a href="mailto:mustansarh192@gmail.com">Support Contact</a></li>
                 </ul>
             </div>
         </div>
